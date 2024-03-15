@@ -46,4 +46,9 @@ public class CourseRepositoryTest {
         assertEquals("JPA in 50 Steps - Updated", course1.getName());
     }
 
+    @Test
+    public void playWithEntityManager(){
+        repository.playWithEntityManager();
+    }
+
 }
