@@ -2,13 +2,16 @@ package com.jpa.hibernate.repository;
 
 import com.jpa.hibernate.entity.Course;
 import jakarta.persistence.EntityManager;
-import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
 public class CourseRepository{
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     EntityManager em;
 
@@ -30,4 +33,17 @@ public class CourseRepository{
         em.remove(course);
     }
 
+    public void playWithEntityManager(){
+        Course course1 = new Course("Web Services in 100 Steps");
+        em.persist(course1);
+        Course course2 = new Course("Angular Js in 100 Steps");
+        em.persist(course2);
+
+        em.flush();
+
+        course1.setName("Web Services in 100 Steps - Updated");
+        course2.setName("Angular Js in 100 Steps - Updated");
+        em.refresh(course1);
+        em.flush();
+    }
 }

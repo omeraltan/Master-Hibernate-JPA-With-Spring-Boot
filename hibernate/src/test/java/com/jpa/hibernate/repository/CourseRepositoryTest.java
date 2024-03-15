@@ -18,20 +18,37 @@ import static org.junit.Assert.assertNull;
 @SpringBootTest(classes = HibernateApplication.class)
 public class CourseRepositoryTest {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     CourseRepository repository;
     @Test
     public void findById_basic(){
         Course course = repository.findById(10001L);
         assertEquals("JPA in 50 Steps", course.getName());
-        logger.info("Test is Running");
     }
-
     @Test
     @DirtiesContext
     public void deleteById_basic(){
         repository.deleteById(10002L);
         assertNull(repository.findById(10002L));
     }
+
+    @Test
+    @DirtiesContext
+    public void save_basic(){
+        // get a courser
+        Course course = repository.findById(10001L);
+        assertEquals("JPA in 50 Steps", course.getName());
+        // update details
+        course.setName("JPA in 50 Steps - Updated");
+        repository.save(course);
+        // check the value
+        Course course1 = repository.findById(10001L);
+        assertEquals("JPA in 50 Steps - Updated", course1.getName());
+    }
+
+    @Test
+    public void playWithEntityManager(){
+        repository.playWithEntityManager();
+    }
+
 }
