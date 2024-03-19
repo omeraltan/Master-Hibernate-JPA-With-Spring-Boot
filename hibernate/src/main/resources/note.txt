@@ -1,0 +1,6 @@
+
+ManyToOne : Fetch type -> always "Eager"
+OneToOne  : Fetch type -> always "Eager"
+
+OneToMany : Fetch type -> always "Lazy"
+ManyToMany: Fetch type -> always "Lazy"
