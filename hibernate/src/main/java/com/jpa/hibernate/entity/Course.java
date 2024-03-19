@@ -5,6 +5,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Course")
@@ -22,6 +24,8 @@ public class Course {
     private Long id;
     @Column(name = "name", nullable = false)
     private String name;
+    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
+    private List<Review> reviews = new ArrayList<>();
     @UpdateTimestamp
     private LocalDateTime lastUpdatedDate;
     @CreationTimestamp
@@ -45,6 +49,18 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
+
+    public void removeReview(Review review) {
+        this.reviews.remove(review);
     }
 
     @Override
