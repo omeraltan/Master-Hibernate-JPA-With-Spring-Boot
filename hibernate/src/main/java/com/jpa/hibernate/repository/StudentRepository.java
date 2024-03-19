@@ -1,5 +1,6 @@
 package com.jpa.hibernate.repository;
 
+import com.jpa.hibernate.entity.Course;
 import com.jpa.hibernate.entity.Passport;
 import com.jpa.hibernate.entity.Student;
 import jakarta.persistence.EntityManager;
@@ -59,5 +60,26 @@ public class StudentRepository {
         // Database Operation 4 - update student
         student.setName("Ranga - updated");
         // Persistence Context (student++, passport++)
+    }
+
+    public void insertStudentAndCourse(){
+        Student student = new Student("Jack");
+        Course course = new Course("Microservices in 100 Steps");
+        em.persist(student);
+        em.persist(course);
+
+        student.addCourses(course);
+        course.addStudent(student);
+        em.persist(student);
+    }
+
+    public void insertStudentAndCourse(Student student, Course course){
+        student.addCourses(course);
+        course.addStudent(student);
+
+        em.persist(student);
+        em.persist(course);
+
+        em.persist(student);
     }
 }
