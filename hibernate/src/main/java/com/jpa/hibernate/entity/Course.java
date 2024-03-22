@@ -17,7 +17,7 @@ import java.util.List;
         @NamedQuery(name = "query_get_100_Step_courses", query = "Select c From Course c Where name like '%100 Steps'")
     }
 )
-
+@Cacheable
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
