@@ -2,6 +2,9 @@ insert into course(id, name, created_date, last_updated_date) values (10001, 'JP
 insert into course(id, name, created_date, last_updated_date) values (10002, 'Spring in 50 Steps', '2024-03-12', '2024-03-12');
 insert into course(id, name, created_date, last_updated_date) values (10003, 'Spring Boot in 100 Steps', '2024-03-12', '2024-03-12');
 
+
+
+
 insert into passport(id, number) values (40001,'E123456');
 insert into passport(id, number) values (40002,'N123457');
 insert into passport(id, number) values (40003,'L123890');
