@@ -24,7 +24,7 @@ public class NativeQueriesTest {
     @Autowired
     EntityManager em;
     @Test
-    public void native_queries_basic(){
+    public void native_queries_basic(){ // If you use native query, you use where clause ourselves. fpr example: SELECT * FROM COURSE WHERE is_deleted=0
         Query query = em.createNativeQuery("SELECT * FROM COURSE", Course.class);
         List resultList = query.getResultList();
         logger.info("SELECT * FROM COURSE -> {}", resultList);

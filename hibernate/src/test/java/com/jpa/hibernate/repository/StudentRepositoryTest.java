@@ -1,6 +1,7 @@
 package com.jpa.hibernate.repository;
 
 import com.jpa.hibernate.HibernateApplication;
+import com.jpa.hibernate.entity.Address;
 import com.jpa.hibernate.entity.Course;
 import com.jpa.hibernate.entity.Passport;
 import com.jpa.hibernate.entity.Student;
@@ -32,6 +33,16 @@ public class StudentRepositoryTest {
     public void someTest(){
         repository.someOperationToUnderstandPersistenceContext();
     }
+    @Test
+    @Transactional
+    public void setAddressDetails(){
+        Student student = em.find(Student.class, 20001L);
+        student.setAddress(new Address("No 101","Som Street", "Hyderabad"));
+        em.flush();
+        logger.info("student -> {}", student);
+        logger.info("passport -> {}", student.getPassport());
+    }
+
     @Test
     @Transactional
     public void retrieveStudentAndPassportDetails(){

@@ -8,13 +8,14 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
-    private String rating;
+    @Enumerated(EnumType.STRING)
+    private ReviewRating rating;
     @Column(nullable = false)
     private String description;
     @ManyToOne
     private Course course;
 
-    public Review(String rating, String description) {
+    public Review(ReviewRating rating, String description) {
         this.rating = rating;
         this.description = description;
     }
@@ -31,11 +32,11 @@ public class Review {
         this.id = id;
     }
 
-    public String getRating() {
+    public ReviewRating getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(ReviewRating rating) {
         this.rating = rating;
     }
 
