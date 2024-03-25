@@ -17,6 +17,8 @@ public class Student {
     public Student(String name) {
         this.name = name;
     }
+    @Embedded
+    private Address address;
 
     @OneToOne(fetch = FetchType.LAZY)
     private Passport passport;
@@ -54,6 +56,14 @@ public class Student {
 
     public void addCourses(Course course) {
         this.courses.add(course);
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override
